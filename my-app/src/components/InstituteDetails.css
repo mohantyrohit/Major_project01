@@ -1,0 +1,434 @@
+/* InstituteDetails.css */
+
+.institute-details-container {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInSlideUp 0.5s ease-out forwards;
+}
+
+@keyframes fadeInSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .institute-details-container {
+    padding: 15px;
+  }
+}
+
+.top-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.hamburger {
+  font-size: 1.8em;
+  cursor: pointer;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+}
+
+.hamburger:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.05);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 50px;
+  left: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.top-menu:hover .dropdown-menu {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropdown-menu button {
+  display: block;
+  width: 100%;
+  padding: 12px 18px;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 1em;
+  color: #333;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-menu button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.back-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+}
+
+.back-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.03);
+}
+
+.details-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.details-header h1 {
+  color: #333;
+  margin-bottom: 5px;
+  font-size: 2em;
+  opacity: 0;
+  transform: translateY(5px);
+  animation: fadeInSlideDown 0.4s ease-out 0.2s forwards;
+}
+
+@keyframes fadeInSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.location-info {
+  color: #666;
+  font-size: 1em;
+  opacity: 0;
+  transform: translateY(5px);
+  animation: fadeInSlideDown 0.4s ease-out 0.3s forwards;
+}
+
+.institute-image {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.institute-photo {
+  width: 90%;
+  max-width: 800px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  margin-bottom: 25px;
+  display: block;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  animation: fadeInScale 0.5s ease-out 0.4s forwards;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .institute-photo {
+    width: 100%;
+  }
+}
+
+.details-section {
+  margin-bottom: 35px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eee;
+  opacity: 0;
+  transform: translateY(5px);
+  animation: fadeInSlideDown 0.4s ease-out 0.5s forwards;
+}
+
+.details-section h2 {
+  color: #333;
+  border-bottom: 3px solid #007bff;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  font-size: 1.6em;
+}
+
+.details-section p {
+  color: #555;
+  line-height: 1.7;
+  font-size: 1em;
+}
+
+.amenity {
+  margin-bottom: 25px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.amenity h3 {
+  color: #444;
+  margin-bottom: 12px;
+  font-size: 1.3em;
+}
+
+.amenity p {
+  color: #666;
+  margin-bottom: 8px;
+  font-size: 0.95em;
+}
+
+.map-frame {
+  border: 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 350px;
+}
+
+.no-map {
+  color: #777;
+  font-style: italic;
+  font-size: 0.9em;
+}
+
+.review-list {
+  list-style: none;
+  padding: 0;
+}
+
+.review-item {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.review-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.review-item .star {
+  color: gold;
+  margin-right: 3px;
+  font-size: 1.2em;
+}
+
+.review-item p {
+  margin-bottom: 10px;
+  font-size: 0.95em;
+}
+
+.review-item strong {
+  font-weight: bold;
+  color: #333;
+}
+
+.review-item small {
+  color: #777;
+  font-size: 0.85em;
+}
+
+/* Improved Review Form Styling with Animation */
+.review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+  opacity: 0;
+  transform: translateY(5px);
+  animation: fadeInSlideDown 0.4s ease-out 0.6s forwards;
+}
+
+.review-form textarea {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  line-height: 1.5;
+  resize: vertical;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.review-form textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.star-rating {
+  display: flex;
+  gap: 8px;
+  font-size: 1.8em;
+  color: #ccc;
+  margin-bottom: 10px;
+  justify-content: flex-start;
+}
+
+.star-rating .star {
+  cursor: pointer;
+  transition: color 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.star-rating .star:hover {
+  transform: scale(1.1);
+}
+
+.star-rating .active {
+  color: gold;
+}
+
+.review-form button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #28a745;
+  color: white;
+  cursor: pointer;
+  font-size: 1.1em;
+  transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+  align-self: flex-start;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.review-form button:hover {
+  background-color: #1e7e34;
+  transform: scale(1.02);
+}
+
+/* Improved Request Form Styling with Animation */
+.request-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  background-color: #e9ecef;
+  border-radius: 8px;
+  margin-top: 20px;
+  opacity: 0;
+  transform: translateY(5px);
+  animation: fadeInSlideDown 0.4s ease-out 0.7s forwards;
+}
+
+.request-form input[type="text"],
+.request-form input[type="tel"],
+.request-form textarea {
+  padding: 12px;
+  border: 1px solid #adb5bd;
+  border-radius: 5px;
+  font-size: 1em;
+  line-height: 1.5;
+  box-sizing: border-box;
+  width: 100%;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.request-form input:focus,
+.request-form textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.request-form button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 1.1em;
+  transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+  align-self: flex-start;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.request-form button:hover {
+  background-color: #0056b3;
+  transform: scale(1.02);
+}
+
+/* Responsive Adjustments for Smaller Screens */
+@media (max-width: 600px) {
+  .details-header h1 {
+    font-size: 1.8em;
+  }
+
+  .location-info {
+    font-size: 0.9em;
+  }
+
+  .details-section h2 {
+    font-size: 1.4em;
+  }
+
+  .review-form,
+  .request-form {
+    padding: 15px;
+  }
+
+  .star-rating {
+    font-size: 1.5em;
+  }
+
+  .review-form button,
+  .request-form button {
+    font-size: 1em;
+    padding: 10px 15px;
+  }
+}

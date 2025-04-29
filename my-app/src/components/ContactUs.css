@@ -1,0 +1,91 @@
+/* ContactUs.css */
+
+.contact-us-container {
+    padding: 3rem;
+    max-width: 900px;
+    margin: 4rem auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    color: #333;
+  }
+  
+  .contact-us-container h1 {
+    color: #007bff;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .contact-us-container p {
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+  }
+  
+  .contact-us-container h2 {
+    color: #28a745;
+    font-size: 1.8rem;
+    margin-top: 2rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .contact-us-container a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .contact-us-container a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+  
+  .contact-us-container ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .contact-us-container ul li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .contact-us-container ul li a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  
+  .contact-us-container ul li a:hover {
+    background-color: #e9ecef;
+    border-color: #adadad;
+  }
+  
+  /* Unique Styles */
+  .contact-us-container {
+    border-left: 8px solid #ffc107; /* Yellow accent border */
+  }
+  
+  .contact-us-container h1::before {
+    content: '\f0e0'; /* Envelope icon (Font Awesome) - Ensure Font Awesome is included in your project */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 400;
+    margin-right: 0.5rem;
+  }
+  
+  .contact-us-container h2 {
+    position: relative;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px dashed #6c757d; /* Dashed grey line under heading */
+  }
+  
+  .contact-us-container ul li a {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+  
+  .contact-us-container p strong {
+    color: #dc3545; /* Highlight important text */
+  }

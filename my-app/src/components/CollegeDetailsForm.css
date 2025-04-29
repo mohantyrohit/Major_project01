@@ -1,0 +1,102 @@
+/* CollegeDetailsForm.css */
+
+.college-form-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .college-form-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 2rem;
+  }
+  
+  .form-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+  
+  .form-section {
+    margin-bottom: 2rem;
+  }
+  
+  .form-section h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1e40af;
+    margin-bottom: 1rem;
+  }
+  
+  .input-field,
+  .textarea-field {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    transition: border 0.3s ease;
+  }
+  
+  .input-field:focus,
+  .textarea-field:focus {
+    border-color: #1e40af;
+    outline: none;
+    background-color: #fff;
+  }
+  
+  .checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.75rem;
+  }
+  
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    font-size: 0.95rem;
+  }
+  
+  .checkbox-label input {
+    margin-right: 0.5rem;
+  }
+  
+  .submit-button {
+    background-color: #1e40af;
+    color: #fff;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: #3749c2;
+  }
+  .input, .textarea {
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .input:focus, .textarea:focus, .focus-effect:focus {
+    border-color: #4f46e5; /* nice blue */
+    box-shadow: 0 0 8px rgba(79, 70, 229, 0.4);
+  }
+  
+  .textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  

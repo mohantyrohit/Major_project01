@@ -1,0 +1,145 @@
+/* EventForm.module.css */
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  background-color: #f7f7f7;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 700px;
+  margin: 40px auto;
+  border: 1px solid #e0e0e0;
+}
+
+.formTitle {
+  font-size: 2.5em;
+  color: #333;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.eventForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup {
+  margin-bottom: 25px;
+}
+
+.formLabel {
+  display: block;
+  font-size: 1.1em;
+  color: #555;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.formInput,
+.formTextarea,
+.formFile {
+  width: calc(100% - 20px);
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1em;
+  color: #333;
+  box-sizing: border-box;
+  margin-top: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.formInput:focus,
+.formTextarea:focus,
+.formFile:focus {
+  outline: none;
+  border-color: #007bff; /* A more vibrant focus color */
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.5);
+}
+
+.formTextarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.formFile {
+  padding: 10px;
+  background-color: #fff;
+}
+
+.fileInfo {
+  display: block;
+  font-size: 0.9em;
+  color: #777;
+  margin-top: 3px;
+}
+
+.formActions {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+  justify-content: center;
+}
+
+.submitButton,
+.cancelButton {
+  padding: 14px 28px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.submitButton {
+  background-color: #28a745; /* Success green */
+  color: white;
+}
+
+.submitButton:hover {
+  background-color: #1e7e34;
+  transform: scale(1.05);
+}
+
+.cancelButton {
+  background-color: #dc3545; /* Danger red */
+  color: white;
+}
+
+.cancelButton:hover {
+  background-color: #c82333;
+  transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .formTitle {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+
+  .formGroup {
+    margin-bottom: 20px;
+  }
+
+  .formActions {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .submitButton,
+  .cancelButton {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 1em;
+  }
+}

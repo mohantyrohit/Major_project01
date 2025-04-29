@@ -1,0 +1,113 @@
+.footer {
+  background-color: #f8f9fa;
+  color: #555;
+  padding: 20px 0; /* Adjust padding as needed */
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  border-top: 1px solid #eee;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between; /* Distribute left and right sections */
+  align-items: flex-start; /* Align top of left and right */
+  padding: 10px 20px; /* Add some padding inside the content area */
+  flex-wrap: wrap; /* Allow content to wrap on smaller screens */
+}
+
+.footer-left,
+.footer-right {
+  flex: 1; /* Take up equal available space */
+  min-width: 50%; /* Ensure they don't collapse too much */
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.footer-left {
+  text-align: left;
+}
+
+.footer-right {
+  text-align: right;
+}
+
+.footer-navigation {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.footer-navigation a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 0.9em;
+  transition: color 0.3s ease;
+}
+
+.footer-navigation a:hover {
+  color: #0056b3;
+}
+
+.footer-left p {
+  font-size: 0.85em;
+  margin-bottom: 5px;
+}
+
+.footer-right p {
+  font-size: 0.85em;
+  margin-bottom: 5px;
+  text-align: right;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: flex-end; /* Align icons to the right */
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.footer-logo {
+  max-width: 30px; /* Adjust size as needed */
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.footer-logo:hover {
+  opacity: 1;
+}
+
+.copyright {
+  width: 100%; /* Make it take the full width */
+  text-align: center;
+  font-size: 0.75em;
+  color: #777;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #eee; /* Add a separator */
+}
+
+/* Responsive adjustments (optional) */
+@media (max-width: 600px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-left,
+  .footer-right {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+}

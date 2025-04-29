@@ -1,0 +1,274 @@
+/* AboutUs.css */
+
+/* 1. General Container and Layout */
+.about-us-container {
+  position: relative;
+  padding: 3rem;
+  max-width: 1000px;
+  margin: 8rem auto 4rem; /* Increased top margin to account for navbar - adjust as needed */
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  line-height: 1.8;
+  color: #333;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.8s ease-out forwards, slideUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* 2. Headings */
+h1,
+h2 {
+  color: #2c3e50;
+  margin-bottom: 1.8rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 2.8rem;
+  letter-spacing: 1px;
+}
+
+h2 {
+  font-size: 2.2rem;
+  border-bottom: 3px solid #3498db;
+  padding-bottom: 0.7rem;
+  margin-top: 3rem;
+}
+
+/* 3. Paragraphs and Text */
+p {
+  margin-bottom: 1.8rem;
+  font-size: 1.15rem;
+  color: #555;
+  line-height: 1.9;
+}
+
+strong {
+  color: #3498db;
+  font-weight: 600;
+}
+
+/* 4. Lists */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 0.9rem 0;
+  border-bottom: 1px solid #eee;
+  position: relative;
+  padding-left: 1.8rem;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+li::before {
+  content: '⚓';
+  color: #3498db;
+  position: absolute;
+  left: 0;
+  top: 0.9rem;
+  font-size: 1.3rem;
+}
+
+li:hover {
+  background-color: #ecf0f1;
+  border-radius: 6px;
+  transform: translateX(2px);
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* 5. Team Section */
+h2:nth-child(7) {
+  margin-top: 4rem;
+}
+
+ul:nth-child(8) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 1.5rem;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+ul:nth-child(8) li {
+  border-bottom: none;
+  padding: 1.2rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+  transition: transform 0.25s ease-in-out;
+}
+
+ul:nth-child(8) li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+}
+
+ul:nth-child(8) li::before {
+  content: '🧑‍🤝‍🧑';
+  font-size: 1.6rem;
+  top: 1.1rem;
+}
+
+/* 6. Animations */
+li {
+  opacity: 0;
+  transform: translateX(-15px);
+  animation: slideIn 0.6s ease-out forwards;
+}
+
+li:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+li:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+li:nth-child(4) {
+  animation-delay: 0.25s;
+}
+
+li:nth-child(5) {
+  animation-delay: 0.3s;
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 7. Sliding Form */
+.contact-form {
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  padding: 2rem;
+  border-top: 2px solid #3498db;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px 8px 0 0;
+  transition: bottom 0.5s ease-in-out;
+  box-sizing: border-box; /* Ensure padding doesn't increase width */
+}
+
+.contact-form.show {
+  bottom: 0;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #333;
+  font-size: 1rem;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  width: calc(100% - 2rem); /* Account for padding on both sides */
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+.contact-form textarea {
+  resize: vertical; 
+  min-height: 100px;
+}
+
+
+.contact-form button {
+  background-color: #3498db;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease-in-out;
+  width: fit-content; 
+  margin-top: 0.5rem;
+}
+
+.contact-form button:hover {
+  background-color: #2980b9;
+}
+
+/* 8. Responsive Adjustments */
+@media (max-width: 768px) {
+  .about-us-container {
+    padding: 2rem;
+    margin: 6rem auto 2rem; /* Adjusted top margin for smaller screens */
+  }
+
+  h1 {
+    font-size: 2.3rem;
+  }
+
+  h2 {
+    font-size: 1.9rem;
+  }
+
+  p {
+    font-size: 1.05rem;
+  }
+
+  ul:nth-child(8) {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form {
+    padding: 1.5rem;
+  }
+
+  .contact-form label {
+    font-size: 0.95rem;
+  }
+
+  .contact-form input[type="text"],
+  .contact-form input[type="email"],
+  .contact-form textarea {
+    font-size: 0.9rem;
+  }
+
+  .contact-form button {
+    font-size: 1rem;
+  }
+}
+
+
+
+.about-us-container {
+
+  margin-top: calc(var(--navbar-height) + 2rem); /* Use the variable */
+ 
+}

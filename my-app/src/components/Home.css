@@ -1,0 +1,43 @@
+/* Home.css */
+
+.landing-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center content */
+    align-items: center; /* Horizontally center content */
+    min-height: 100vh; /* Make it at least the height of the viewport */
+    background-size: cover;
+    background-position: center;
+    color: #fff; /* Default text color for better contrast on a background image */
+    text-align: center;
+    padding: 20px; /* Add some padding around the content */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  }
+  
+  .content {
+   
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 40px; /* Space between content and footer */
+  }
+  
+  .content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+  }
+  
+  .content p {
+    font-size: 1.2rem;
+  }
+  
+  /* You might have other styles for the Footer component in a separate Footer.css file */
+  /* If not, you can add basic styling here if needed */
+  /*
+  .footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+  }
+  */
