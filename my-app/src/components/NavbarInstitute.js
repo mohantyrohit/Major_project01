@@ -50,7 +50,7 @@ const NavbarInstitute = () => {
     try {
       const token = localStorage.getItem("userToken");
       const res = await axios.get(
-        `http://localhost:5000/api/requests/${user._id}`,
+        `https://major-project01-1ukh.onrender.com/api/requests/${user._id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -72,7 +72,7 @@ const NavbarInstitute = () => {
       setLoadingStates(true);
       try {
         const res = await axios.get(
-          "http://localhost:5000/api/instituteInfo/states"
+          "https://major-project01-1ukh.onrender.com/api/instituteInfo/states"
         );
         if (res.data.success) setStates(res.data.states);
       } catch (err) {
@@ -116,7 +116,7 @@ const NavbarInstitute = () => {
       setLoadingInstitutes(true);
       try {
         const response = await fetch(
-          `http://localhost:5000/api/instituteInfo/institutes/${selectedState}/${selectedDistrict}`
+          `https://major-project01-1ukh.onrender.com/api/instituteInfo/institutes/${selectedState}/${selectedDistrict}`
         );
         const data = await response.json();
         if (data.success) {
@@ -142,7 +142,7 @@ const NavbarInstitute = () => {
     setLoadingDetails(true);
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/instituteInfo/details?instituteName=${selectedInstitute}`,
+        `https://major-project01-1ukh.onrender.com/api/instituteInfo/details?instituteName=${selectedInstitute}`,
         {
           withCredentials: true,
         }
@@ -165,7 +165,7 @@ const NavbarInstitute = () => {
     if (!user?._id) return;
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/notifications?instituteId=${user._id}`
+        `https://major-project01-1ukh.onrender.com/api/notifications?instituteId=${user._id}`
       );
       setNotifications(res.data.notifications || []);
     } catch (err) {
@@ -185,7 +185,7 @@ const NavbarInstitute = () => {
     if (isOpening) {
       try {
         await axios.put(
-          `http://localhost:5000/api/notifications/mark-read/${user._id}`
+          `https://major-project01-1ukh.onrender.com/api/notifications/mark-read/${user._id}`
         );
         fetchNotifications();
       } catch (err) {
@@ -196,7 +196,7 @@ const NavbarInstitute = () => {
 
   const handleDeleteNotification = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/notifications/${id}`);
+      await axios.delete(`https://major-project01-1ukh.onrender.com/api/notifications/${id}`);
       setNotifications((prev) => prev.filter((notif) => notif._id !== id));
     } catch (error) {
       console.error("Error deleting notification:", error);
@@ -206,7 +206,7 @@ const NavbarInstitute = () => {
   const fetchInstituteInfo = async () => {
     try {
       const token = sessionStorage.getItem("userToken");
-      const res = await axios.get("http://localhost:5000/api/instituteInfo/", {
+      const res = await axios.get("https://major-project01-1ukh.onrender.com/api/instituteInfo/", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setInstituteInfo(res.data.data[0]);
@@ -222,14 +222,14 @@ const NavbarInstitute = () => {
       let res;
       if (status === "rejected") {
         res = await axios.delete(
-          `http://localhost:5000/api/requests/${requestId}`,
+          `https://major-project01-1ukh.onrender.com/api/requests/${requestId}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
       } else {
         res = await axios.patch(
-          `http://localhost:5000/api/requests/${requestId}`,
+          `https://major-project01-1ukh.onrender.com/api/requests/${requestId}`,
           { status },
           {
             headers: { Authorization: `Bearer ${token}` },
@@ -378,7 +378,7 @@ const NavbarInstitute = () => {
                     <p>Contact: {notif.contact}</p>
                     {notif.idCardPath && (
                       <a
-                        href={`http://localhost:5000/${notif.idCardPath}`}
+                        href={`https://major-project01-1ukh.onrender.com${notif.idCardPath}`}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
