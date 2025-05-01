@@ -3,7 +3,7 @@ import axios from "axios";
 
 // Base instance
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "https://major-project01-1ukh.onrender.com/api",
   withCredentials: true, // Send cookies
 });
 
