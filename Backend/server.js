@@ -146,7 +146,7 @@ app.use(morgan("dev"));
 
 // CORS setup
 const corsOptions = {
-    origin: "http://localhost:3000",
+    origin: "https://magnificent-sawine-951aef.netlify.app",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
     optionsSuccessStatus: 204
@@ -179,7 +179,7 @@ app.use(
         saveUninitialized: false,
         store: MongoStore.create(mongoOptions),
         cookie: {
-            secure: false, // Set to true in production with HTTPS
+            secure: true, // Set to true in production with HTTPS
             maxAge: 24 * 60 * 60 * 1000,
         },
     })
