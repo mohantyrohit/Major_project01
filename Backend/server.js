@@ -131,7 +131,6 @@ const authTokenRoutes = require("./routes/authTokenRoutes");
 const requestFormRoutes = require("./routes/requestFormRoutes");
 const collegeInfoRoutes = require('./routes/collegeInfoRoutes');
 
-
 const app = express();
 
 // Security Headers
@@ -146,10 +145,10 @@ app.use(morgan("dev"));
 
 // CORS setup with the correct frontend URL for Netlify
 const corsOptions = {
-    origin: process.env.FRONTEND_URL || "https://institutefinder.netlify.app",  // Correct Netlify URL
+    origin: process.env.FRONTEND_URL || "https://institutefinder.netlify.app",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,  // Important: this allows cookies (like session cookies)
-    optionsSuccessStatus: 204, 
+    credentials: true,
+    optionsSuccessStatus: 204,
 };
 app.use(cors(corsOptions));
 
@@ -184,6 +183,11 @@ app.use(
         },
     })
 );
+
+// ✅ Root route for Render base URL access
+app.get("/", (req, res) => {
+    res.send("🎉 Backend is running! Welcome to the Major Project API.");
+});
 
 // Logout route
 app.post("/api/logout", (req, res) => {
