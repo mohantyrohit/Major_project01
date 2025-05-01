@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import './StudentDashboard.css';
-import { XCircle, AlertTriangle } from 'lucide-react';
+
 
 const StudentChatBox = React.lazy(() => import('./StudentChatBox'));
 const ContactsList = React.lazy(() => import('./ContactsList'));
