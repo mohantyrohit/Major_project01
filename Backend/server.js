@@ -144,12 +144,12 @@ app.use(
 // Logging
 app.use(morgan("dev"));
 
-// CORS setup
+// CORS setup with the correct frontend URL for Netlify
 const corsOptions = {
-    origin: "https://magnificent-sawine-951aef.netlify.app",
+    origin: process.env.FRONTEND_URL || "https://institutefinder.netlify.app",  // Correct Netlify URL
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,
-    optionsSuccessStatus: 204
+    credentials: true,  // Important: this allows cookies (like session cookies)
+    optionsSuccessStatus: 204, 
 };
 app.use(cors(corsOptions));
 
@@ -207,8 +207,6 @@ app.use("/api/notifications", notificationRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/requests", requestFormRoutes);
 app.use('/api/collegeInfo', collegeInfoRoutes);
-
-
 
 // Start server
 const PORT = process.env.PORT || 5000;
