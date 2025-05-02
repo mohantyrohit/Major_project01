@@ -30,7 +30,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/${loginType}/login`,
+        `https://major-project01-1ukh.onrender.com/api/${loginType}/login`,
         {
           [loginType === "student" ? "email" : "instituteId"]: formData.identifier,
           password: formData.password,

@@ -44,7 +44,7 @@ function WelcomeInstitute() {
       try {
         await verifyInstituteAccess();
         const token = localStorage.getItem("userToken");
-        const response = await fetch("http://localhost:5000/api/institute/getUserName", {
+        const response = await fetch("https://major-project01-1ukh.onrender.com/api/institute/getUserName", {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await response.json();
@@ -88,7 +88,7 @@ function WelcomeInstitute() {
         formDataToSend.append(key, formData[key]);
       }
 
-      const response = await fetch("http://localhost:5000/api/instituteInfo", {
+      const response = await fetch("https://major-project01-1ukh.onrender.com/api/instituteInfo", {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
         body: formDataToSend,
@@ -140,7 +140,7 @@ function WelcomeInstitute() {
         }
       }
 
-      const response = await fetch("http://localhost:5000/api/events", {
+      const response = await fetch("https://major-project01-1ukh.onrender.com/api/events", {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
         body: formDataToSend,

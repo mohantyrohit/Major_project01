@@ -34,7 +34,7 @@ const InstituteChatBox = ({ receiverId, receiverName, eventId, onClose }) => {
 
     const token = sessionStorage.getItem("instituteToken");
     try {
-      const res = await fetch(`http://localhost:5000/api/messages/${instituteId}/${receiverId}`, {
+      const res = await fetch(`https://major-project01-1ukh.onrender.com/api/messages/${instituteId}/${receiverId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -101,7 +101,7 @@ const InstituteChatBox = ({ receiverId, receiverName, eventId, onClose }) => {
     console.log("Message Payload:", messagePayload);
 
     try {
-      const res = await fetch("http://localhost:5000/api/messages", {
+      const res = await fetch("https://major-project01-1ukh.onrender.com/api/messages", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -201,7 +201,7 @@ export default InstituteChatBox;
 
 //     const token = localStorage.getItem("instituteToken");
 //     try {
-//       const res = await fetch(`http://localhost:5000/api/messages/${instituteId}/${receiverId}`, {
+//       const res = await fetch(`https://major-project01-1ukh.onrender.com/api/messages/${instituteId}/${receiverId}`, {
 //         headers: {
 //           Authorization: `Bearer ${token}`,
 //         },
@@ -259,7 +259,7 @@ export default InstituteChatBox;
 //     }
 
 //     try {
-//       const res = await fetch("http://localhost:5000/api/messages", {
+//       const res = await fetch("https://major-project01-1ukh.onrender.com/api/messages", {
 //         method: "POST",
 //         headers: {
 //           "Content-Type": "application/json",

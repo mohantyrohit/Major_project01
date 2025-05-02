@@ -20,7 +20,7 @@ const MyInstituteDetails = () => {
         }
 
         const response = await fetch(
-          `http://localhost:5000/api/instituteInfo/${instituteUserId}`,
+          `https://major-project01-1ukh.onrender.com/api/instituteInfo/${instituteUserId}`,
           {
             method: "GET",
             headers: {
@@ -64,7 +64,7 @@ const MyInstituteDetails = () => {
         {instituteDetails.institutePictureUrl && (
           <div className="institute-image">
             <img
-              src={`http://localhost:5000${instituteDetails.institutePictureUrl}`}
+              src={`https://major-project01-1ukh.onrender.com${instituteDetails.institutePictureUrl}`}
               alt={instituteDetails.instituteName}
               className="institute-photo"
             />

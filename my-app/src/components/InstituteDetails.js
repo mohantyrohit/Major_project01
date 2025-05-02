@@ -51,7 +51,7 @@
 
 //       try {
 //         const response = await fetch(
-//           `http://localhost:5000/api/reviews/${instituteId}`,
+//           `https://major-project01-1ukh.onrender.com/api/reviews/${instituteId}`,
 //           {
 //             method: "GET",
 //             headers: {
@@ -88,7 +88,7 @@
 //       if (user?.isInstitute && user?._id === instituteId) {
 //         try {
 //           const response = await fetch(
-//             `http://localhost:5000/api/requests/${instituteId}`,
+//             `https://major-project01-1ukh.onrender.com/api/requests/${instituteId}`,
 //             {
 //               method: "GET",
 //               headers: {
@@ -130,7 +130,7 @@
 //       };
 
 //       const response = await fetch(
-//         "http://localhost:5000/api/reviews/submit",
+//         "https://major-project01-1ukh.onrender.com/api/reviews/submit",
 //         {
 //           method: "POST",
 //           headers: {
@@ -157,7 +157,7 @@
 //     e.preventDefault();
 
 //     try {
-//       const response = await fetch("http://localhost:5000/api/requests", {
+//       const response = await fetch("https://major-project01-1ukh.onrender.com/api/requests", {
 //         method: "POST",
 //         headers: {
 //           "Content-Type": "application/json",
@@ -209,7 +209,7 @@
 //     try {
 //       const token = localStorage.getItem("userToken");
 //       const response = await axios.put(
-//         `http://localhost:5000/api/instituteInfo/amenity-map/${instituteDetails._id}`,
+//         `https://major-project01-1ukh.onrender.com/api/instituteInfo/amenity-map/${instituteDetails._id}`,
 //         {
 //           embedUrlField: embedKey,
 //           nameField: nameKey,
@@ -273,7 +273,7 @@
 //         {instituteDetails.institutePictureUrl && (
 //           <div className="institute-image">
 //             <img
-//               src={`http://localhost:5000${instituteDetails.institutePictureUrl}`}
+//               src={`https://major-project01-1ukh.onrender.com${instituteDetails.institutePictureUrl}`}
 //               alt={instituteDetails.instituteName}
 //               className="institute-photo"
 //             />
@@ -468,7 +468,7 @@ const InstituteDetails = () => {
 
       try {
         const response = await fetch(
-          `http://localhost:5000/api/reviews/${instituteId}`,
+          `https://major-project01-1ukh.onrender.com/api/reviews/${instituteId}`,
           {
             method: "GET",
             headers: {
@@ -505,7 +505,7 @@ const InstituteDetails = () => {
       if (user?.isInstitute && user?._id === instituteId) {
         try {
           const response = await fetch(
-            `http://localhost:5000/api/requests/${instituteId}`,
+            `https://major-project01-1ukh.onrender.com/api/requests/${instituteId}`,
             {
               method: "GET",
               headers: {
@@ -547,7 +547,7 @@ const InstituteDetails = () => {
       };
 
       const response = await fetch(
-        "http://localhost:5000/api/reviews/submit",
+        "https://major-project01-1ukh.onrender.com/api/reviews/submit",
         {
           method: "POST",
           headers: {
@@ -574,7 +574,7 @@ const InstituteDetails = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/api/requests", {
+      const response = await fetch("https://major-project01-1ukh.onrender.com/api/requests", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -628,7 +628,7 @@ const InstituteDetails = () => {
     try {
       const token = localStorage.getItem("userToken");
       const response = await axios.put(
-        `http://localhost:5000/api/instituteInfo/amenity-map/${instituteDetails._id}`,
+        `https://major-project01-1ukh.onrender.com/api/instituteInfo/amenity-map/${instituteDetails._id}`,
         {
           embedUrlField: embedKey,
           nameField: nameKey,
@@ -692,7 +692,7 @@ const InstituteDetails = () => {
         {instituteDetails.institutePictureUrl && (
           <div className="institute-image">
             <img
-              src={`http://localhost:5000${instituteDetails.institutePictureUrl}`}
+              src={`https://major-project01-1ukh.onrender.com${instituteDetails.institutePictureUrl}`}
               alt={instituteDetails.instituteName}
               className="institute-photo"
               />

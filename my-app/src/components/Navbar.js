@@ -31,7 +31,7 @@ const Navbar = () => {
     const fetchStates = async () => {
       setLoadingStates(true);
       try {
-        const response = await fetch("http://localhost:5000/api/instituteInfo/states");
+        const response = await fetch("https://major-project01-1ukh.onrender.com/api/instituteInfo/states");
         const data = await response.json();
         if (data.success) {
           setStates(data.states);
@@ -58,7 +58,7 @@ const Navbar = () => {
     const fetchDistricts = async () => {
       setLoadingDistricts(true);
       try {
-        const response = await fetch(`http://localhost:5000/api/instituteInfo/districts/${selectedState}`);
+        const response = await fetch(`https://major-project01-1ukh.onrender.com/api/instituteInfo/districts/${selectedState}`);
         const data = await response.json();
         if (data.success) {
           setDistricts(data.districts);
@@ -86,7 +86,7 @@ const Navbar = () => {
       setLoadingInstitutes(true);
       try {
         const response = await fetch(
-          `http://localhost:5000/api/instituteInfo/institutes/${selectedState}/${selectedDistrict}`
+          `https://major-project01-1ukh.onrender.com/api/instituteInfo/institutes/${selectedState}/${selectedDistrict}`
         );
         const data = await response.json();
         if (data.success) {
@@ -115,7 +115,7 @@ const Navbar = () => {
     try {
       console.log(`Fetching details for institute: ${selectedInstitute}`);
       const response = await fetch(
-        `http://localhost:5000/api/instituteInfo/details?instituteName=${selectedInstitute}`,
+        `https://major-project01-1ukh.onrender.com/api/instituteInfo/details?instituteName=${selectedInstitute}`,
         { credentials: "include" } // Include credentials for user session
       );
       const data = await response.json();
@@ -136,7 +136,7 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/logout", {
+      const response = await fetch("https://major-project01-1ukh.onrender.com/api/logout", {
         method: "POST",
         credentials: "include",
       });

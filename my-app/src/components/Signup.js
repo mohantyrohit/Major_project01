@@ -31,7 +31,7 @@ const Signup = () => {
     setError(""); // Clear any previous errors
 
     try {
-      const response = await fetch("http://localhost:5000/api/student/signup", {
+      const response = await fetch("https://major-project01-1ukh.onrender.com/api/student/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -63,7 +63,7 @@ const Signup = () => {
     setError(""); // Clear any previous errors
 
     try {
-      const response = await fetch("http://localhost:5000/api/institute/signup", {
+      const response = await fetch("https://major-project01-1ukh.onrender.com/api/institute/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -32,7 +32,7 @@ function EventsPage() {
       }
 
       try {
-        const res = await fetch("http://localhost:5000/api/student/me", {
+        const res = await fetch("https://major-project01-1ukh.onrender.com/api/student/me", {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
@@ -64,7 +64,7 @@ function EventsPage() {
 
       try {
         const response = await fetch(
-          `http://localhost:5000/api/events/institute/${instituteId}`,
+          `https://major-project01-1ukh.onrender.com/api/events/institute/${instituteId}`,
           {
             headers: token ? { Authorization: `Bearer ${token}` } : {},
           }
@@ -141,7 +141,7 @@ function EventsPage() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/events/participate",
+        "https://major-project01-1ukh.onrender.com/api/events/participate",
         {
           method: "POST",
           headers: { Authorization: `Bearer ${token}` },
@@ -192,7 +192,7 @@ function EventsPage() {
               {event.organizerPhoto && (
                 <div className="organizer-image-container">
                   <img
-                    src={`http://localhost:5000/${event.organizerPhoto.replace(/^\/?/, "")}`}
+                    src={`https://major-project01-1ukh.onrender.com/${event.organizerPhoto.replace(/^\/?/, "")}`}
                     alt={event.organizerName}
                     className="organizer-image"
                   />
@@ -205,7 +205,7 @@ function EventsPage() {
                   {event.eventPhotos.map((photo, i) => (
                     <img
                       key={i}
-                      src={`http://localhost:5000/${photo.replace(/^\/?/, "")}`}
+                      src={`https://major-project01-1ukh.onrender.com/${photo.replace(/^\/?/, "")}`}
                       alt={`Event ${i + 1}`}
                       className="event-photo"
                     />

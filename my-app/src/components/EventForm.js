@@ -55,7 +55,7 @@ function EventForm({ onSubmit, onCancel }) {
     const formData = buildFormData();
 
     const postEvent = async (tokenToUse) => {
-      return fetch("http://localhost:5000/api/events", {
+      return fetch("https://major-project01-1ukh.onrender.com/api/events", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${tokenToUse}`,
@@ -69,7 +69,7 @@ function EventForm({ onSubmit, onCancel }) {
 
       if (response.status === 401) {
         // Try refreshing token
-        const refreshRes = await fetch("http://localhost:5000/api/auth/refresh", {
+        const refreshRes = await fetch("https://major-project01-1ukh.onrender.com/api/auth/refresh", {
           method: "POST",
           headers: {
             Authorization: `Bearer ${originalToken}`,

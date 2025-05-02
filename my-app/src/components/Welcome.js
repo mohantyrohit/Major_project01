@@ -19,7 +19,7 @@ const Welcome = () => {
           window.location.href = "/login";
           return;
         }
-        const response = await fetch("http://localhost:5000/api/student/getUserName", {
+        const response = await fetch("https://major-project01-1ukh.onrender.com/api/student/getUserName", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -124,7 +124,7 @@ export default Welcome;
 //           return;
 //         }
 
-//         const response = await fetch("http://localhost:5000/api/student/getUserName", {
+//         const response = await fetch("https://major-project01-1ukh.onrender.com/api/student/getUserName", {
 //           headers: {
 //             Authorization: `Bearer ${token}`,
 //           },
