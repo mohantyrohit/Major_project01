@@ -44,10 +44,11 @@ const App = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/events", {
+      const response = await fetch("https://major-project01-1ukh.onrender.com/api/events", {
         method: "POST",
         body: formData,
       });
+      
 
       const result = await response.json();
       if (response.ok) {
