@@ -93,7 +93,7 @@ const NavbarInstitute = () => {
       setLoadingDistricts(true);
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/instituteInfo/districts/${selectedState}`
+          `https://major-project01-1ukh.onrender.com/api/instituteInfo/districts/${selectedState}`
         );
         if (res.data.success) setDistricts(res.data.districts);
       } catch (err) {
