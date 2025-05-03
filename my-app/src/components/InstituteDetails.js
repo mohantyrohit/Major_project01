@@ -421,16 +421,17 @@ import { UserContext } from "../context/AuthContext";
 import "./InstituteDetails.css";
 import axios from "axios"; // Import axios for API calls
 
-// Star display component (non-interactive)
+// Star display component (non-interactive) - FIXED
 const StarDisplay = ({ rating }) => {
   const totalStars = 5;
-  const roundedRating = Math.round(rating);
+  const fullStars = Math.floor(rating); // Ensures 4.9 stays 4
+  
   return (
     <>
       {[...Array(totalStars)].map((_, index) => (
         <span
           key={index}
-          className={`star ${index < roundedRating ? "filled" : ""}`}
+          className={`star ${index < fullStars ? "filled" : ""}`}
         >
           ★
         </span>
@@ -450,8 +451,8 @@ const InstituteDetails = () => {
   const [starRating, setStarRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
   const [showDropdown, setShowDropdown] = useState(false);
-  const [ setRequests] = useState([]); // State to hold requests
-  // 1️⃣ State for New Form Fields
+  const [setRequests] = useState([]); // State to hold requests
+  // State for New Form Fields
   const [requestName, setRequestName] = useState("");
   const [requestMobile, setRequestMobile] = useState("");
   const [requestTitle, setRequestTitle] = useState("");
@@ -569,7 +570,7 @@ const InstituteDetails = () => {
     }
   };
 
-  // Submit Handler for Request Form (Corrected to include mobile)
+  // Submit Handler for Request Form
   const handleRequestSubmit = async (e) => {
     e.preventDefault();
 
@@ -584,8 +585,8 @@ const InstituteDetails = () => {
           receiverId: instituteDetails.createdBy,
           title: requestTitle,
           message: requestContent,
-          date: new Date().toISOString(), // Optional: Send current date
-          senderMobile: requestMobile, // Include the mobile number
+          date: new Date().toISOString(),
+          senderMobile: requestMobile,
         }),
       });
 
@@ -695,7 +696,7 @@ const InstituteDetails = () => {
               src={`https://major-project01-1ukh.onrender.com${instituteDetails.institutePictureUrl}`}
               alt={instituteDetails.instituteName}
               className="institute-photo"
-              />
+            />
           </div>
         )}
       </div>
@@ -748,21 +749,22 @@ const InstituteDetails = () => {
         <h2>Student Reviews</h2>
         <ul className="review-list">
           {reviews.length > 0 ? (
-            reviews
-              .filter(
-                (review, index, self) =>
-                  index === self.findIndex((r) => r._id === review._id)
-              )
-              .map((review) => (
+            reviews.map((review) => {
+              // Debug log to see actual rating values
+              console.log("Review Star Rating:", review.starRating); 
+              return (
                 <li key={`${review._id}-${review.createdAt}`} className="review-item">
-                  <StarDisplay rating={review.starRating} />
+                  <div className="star-display">
+                    <StarDisplay rating={review.starRating} />
+                  </div>
                   <p>{review.reviewText}</p>
                   <p><strong>User:</strong> {review.userName}</p>
                   <p>
                     <small>Posted on: {new Date(review.createdAt).toLocaleDateString()}</small>
                   </p>
                 </li>
-              ))
+              );
+            })
           ) : (
             <p>No reviews yet. Be the first to review!</p>
           )}
@@ -774,8 +776,7 @@ const InstituteDetails = () => {
             onChange={(e) => setReviewText(e.target.value)}
             placeholder="Write your review here..."
             required
-          ></textarea>
-
+          />
           <div className="star-rating">
             {[1, 2, 3, 4, 5].map((star) => (
               <span
@@ -789,7 +790,6 @@ const InstituteDetails = () => {
               </span>
             ))}
           </div>
-
           <button type="submit">Submit Review</button>
         </form>
       </div>
@@ -824,7 +824,7 @@ const InstituteDetails = () => {
             onChange={(e) => setRequestContent(e.target.value)}
             placeholder="Write your request details..."
             required
-          ></textarea>
+          />
           <button type="submit">Send Request</button>
         </form>
       </div>

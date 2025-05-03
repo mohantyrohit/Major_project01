@@ -260,10 +260,20 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Star styling for displayed reviews */
 .review-item .star {
-  color: gold;
   margin-right: 3px;
   font-size: 1.2em;
+}
+
+/* THIS IS THE KEY FIX: Add specific style for filled stars in display */
+.review-item .star.filled {
+  color: gold;
+}
+
+/* Default star color when not filled */
+.review-item .star:not(.filled) {
+  color: #ccc;
 }
 
 .review-item p {
@@ -324,13 +334,14 @@
 .star-rating .star {
   cursor: pointer;
   transition: color 0.2s ease-in-out, transform 0.1s ease-in-out;
+  color: #ccc; /* Default color for stars */
 }
 
 .star-rating .star:hover {
   transform: scale(1.1);
 }
 
-.star-rating .active {
+.star-rating .star.active {
   color: gold;
 }
 
@@ -352,6 +363,17 @@
   transform: scale(1.02);
 }
 
+/* Add animation if not already defined */
+@keyframes fadeInSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 /* Improved Request Form Styling with Animation */
 .request-form {
   display: flex;
