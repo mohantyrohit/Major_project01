@@ -80,5 +80,22 @@ router.get('/institute', verifyToken, async (req, res) => {
     res.status(500).json({ message: 'Error retrieving college details for this institute' });
   }
 });
+// Get College Details by URL param :instituteId
+router.get('/institute/:instituteId', async (req, res) => {
+  try {
+    const { instituteId } = req.params;
+
+    const collegeDetails = await CollegeDetails.find({ instituteId });
+    if (!collegeDetails || collegeDetails.length === 0) {
+      return res.status(404).json({ message: 'No college details found for this institute.' });
+    }
+
+    res.status(200).json(collegeDetails);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error retrieving college details by instituteId.' });
+  }
+});
+
 
 module.exports = router;
