@@ -14,6 +14,7 @@ import MyInstituteDetails from "../MyInstituteDetails"; // ✅ New import
 import AboutUs from "../AboutUs"; 
 import ContactUs from "../ContactUs"; 
 import CollegeDetailsForm from "../CollegeDetailsForm";
+import CollegeDetails from '../CollegeDetails'; 
 
 
 
@@ -89,7 +90,8 @@ const App = () => {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/college-details-form" element={<CollegeDetailsForm />} />
-
+        <Route path="/college-details" element={<CollegeDetails />} />
+        {/* Add more routes as needed */}
       </Routes>
     </>
   );

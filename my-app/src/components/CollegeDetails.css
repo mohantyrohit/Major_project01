@@ -1,0 +1,301 @@
+/* CollegeDetails.css */
+
+/* Main container styling */
+.college-details-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
+    color: #333;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    animation: fadeIn 0.6s ease-in-out;
+  }
+  
+  /* Header styling */
+  .college-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid #3498db;
+    position: relative;
+  }
+  
+  .college-name {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    animation: slideDown 0.8s ease-out;
+  }
+  
+  .college-motto {
+    font-style: italic;
+    color: #7f8c8d;
+    font-size: 1.2rem;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  /* Basic info section */
+  .basic-info {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    animation: slideUp 0.7s ease-out;
+  }
+  
+  .info-item {
+    margin-bottom: 0.5rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .info-item:hover {
+    transform: translateX(5px);
+  }
+  
+  .info-label {
+    font-weight: 600;
+    color: #3498db;
+    margin-right: 0.5rem;
+  }
+  
+  /* Contact info section */
+  .contact-info {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    animation: slideUp 0.8s ease-out;
+  }
+  
+  .contact-info h3 {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .contact-item {
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .contact-item a {
+    color: #3498db;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .contact-item a:hover {
+    color: #2980b9;
+    text-decoration: underline;
+  }
+  
+  /* Section styling */
+  .info-section {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    animation: fadeIn 1s ease-in-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .info-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  .info-section h3 {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .info-section h4 {
+    color: #34495e;
+    margin-top: 1rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  /* Program lists */
+  .program-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .program-item {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 4px solid #3498db;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .program-item:hover {
+    background-color: #e8f4f8;
+    transform: translateX(5px);
+  }
+  
+  /* Department styling */
+  .department-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  
+  .department-item {
+    background-color: #e8f4f8;
+    color: #2980b9;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+  }
+  
+  .department-item:hover {
+    background-color: #3498db;
+    color: #fff;
+    transform: scale(1.05);
+  }
+  
+  /* Loading and error states */
+  .loading-container,
+  .error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .loading-spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+  }
+  
+  .error-container h2 {
+    color: #e74c3c;
+    margin-bottom: 1rem;
+  }
+  
+  .home-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+  }
+  
+  .home-button:hover {
+    background-color: #2980b9;
+  }
+  
+  /* Two column layout for larger sections */
+  .two-column {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  /* Career section highlighting */
+  .placement-stats {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #2ecc71;
+  }
+  
+  .top-recruiters {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #f39c12;
+  }
+  
+  /* Animation keyframes */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .college-name {
+      font-size: 2rem;
+    }
+    
+    .basic-info {
+      grid-template-columns: 1fr;
+    }
+    
+    .program-list {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* Print styles */
+  @media print {
+    .college-details-container {
+      box-shadow: none;
+      padding: 0;
+    }
+    
+    .info-section:hover {
+      transform: none;
+      box-shadow: none;
+    }
+    
+    .home-button {
+      display: none;
+    }
+  }

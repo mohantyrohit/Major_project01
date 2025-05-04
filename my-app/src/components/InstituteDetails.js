@@ -414,7 +414,6 @@
 // };
 
 // export default InstituteDetails;
-
 import React, { useState, useEffect, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/AuthContext";
@@ -457,6 +456,21 @@ const InstituteDetails = () => {
   const [requestMobile, setRequestMobile] = useState("");
   const [requestTitle, setRequestTitle] = useState("");
   const [requestContent, setRequestContent] = useState("");
+
+  // Store institute ID in session storage when component mounts or instituteDetails changes
+  useEffect(() => {
+    if (instituteDetails && instituteDetails._id) {
+      // Store the institute ID in session storage
+      sessionStorage.setItem('currentInstituteId', instituteDetails._id);
+      console.log('Institute ID stored in session storage:', instituteDetails._id);
+      
+      // If needed, also store the institute creator ID
+      if (instituteDetails.createdBy) {
+        sessionStorage.setItem('instituteCreatorId', instituteDetails.createdBy);
+        console.log('Institute creator ID stored in session storage:', instituteDetails.createdBy);
+      }
+    }
+  }, [instituteDetails]);
 
   // Fetch reviews
   useEffect(() => {
@@ -655,10 +669,38 @@ const InstituteDetails = () => {
     }
   };
 
+  // Function to retrieve institute ID from session storage if not available in state
+  useEffect(() => {
+    if (!instituteDetails && sessionStorage.getItem('currentInstituteId')) {
+      // Logic to fetch institute details using the ID from session storage
+      const fetchInstituteDetails = async () => {
+        try {
+          const token = user?.token || localStorage.getItem("userToken");
+          if (!token) return;
+          
+          const response = await axios.get(
+            `https://major-project01-1ukh.onrender.com/api/instituteInfo/${sessionStorage.getItem('currentInstituteId')}`,
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            }
+          );
+          
+          if (response.data) {
+            setInstituteDetails(response.data);
+          }
+        } catch (error) {
+          console.error("Error fetching institute details from session storage ID:", error);
+        }
+      };
+      
+      fetchInstituteDetails();
+    }
+  }, [instituteDetails, user]);
+
   if (!instituteDetails) {
     return (
       <div>
-        No details available. Please search again.
+        Loading institute details...
       </div>
     );
   }
@@ -672,7 +714,7 @@ const InstituteDetails = () => {
         </div>
         {showDropdown && (
           <div className="dropdown-menu">
-            <button onClick={handleViewCollegeDetails}>College Details</button>
+           <button onClick={handleViewCollegeDetails}>College Details</button>
             <button onClick={handleViewEvents}>Events</button>
             <button onClick={() => navigate(-1)}>Back</button>
           </div>
