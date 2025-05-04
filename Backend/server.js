@@ -224,7 +224,7 @@ app.use("/api/events/participate", participationRoutes);
 app.use("/api/notifications", notificationRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/requests", requestFormRoutes);
-app.use("/api/collegeInfo", collegeInfoRoutes);
+app.use('/api/college-details', collegeInfoRoutes);
 
 // Start server
 const PORT = process.env.PORT || 5000;
