@@ -39,7 +39,7 @@
 // const CollegeDetails = mongoose.model('CollegeDetails', collegeDetailsSchema);
 
 // module.exports = CollegeDetails;
-// models/CollegeDetails.js (or whatever your model name is)
+// models/CollegeDetails.js 
 const mongoose = require('mongoose');
 
 const collegeDetailsSchema = new mongoose.Schema({
