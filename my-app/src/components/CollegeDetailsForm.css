@@ -1,102 +1,304 @@
 /* CollegeDetailsForm.css */
+/* Main variables for consistent theming */
+:root {
+  --primary-color: #4f46e5;
+  --primary-hover: #4338ca;
+  --secondary-color: #0ea5e9;
+  --accent-color: #8b5cf6;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --border-color: #e5e7eb;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --border-radius: 0.375rem;
+  --transition-speed: 0.3s;
+}
 
-.college-form-container {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+/* Form container styling with gentle entrance animation */
+.max-w-5xl {
+  animation: fadeIn 0.8s ease-in-out;
+  background: linear-gradient(to bottom, #ffffff, #f9fafb);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  padding: 2rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Section styling */
+form > div {
+  background-color: #ffffff;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid var(--primary-color);
+  transition: all var(--transition-speed) ease;
+}
+
+form > div:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+/* Section titles with background gradient */
+h3.text-xl {
+  color: var(--text-dark);
+  position: relative;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+h3.text-xl::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 50px;
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  border-radius: 2px;
+  animation: width-expand 1s ease-out forwards;
+}
+
+@keyframes width-expand {
+  from { width: 0; }
+  to { width: 50px; }
+}
+
+/* Form heading with gradient text */
+h2.text-2xl {
+  color: var(--text-dark);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.8; }
+  100% { opacity: 1; }
+}
+
+/* Input and textarea styling */
+.input, .textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  background-color: #ffffff;
+  transition: all var(--transition-speed) ease;
+  margin-bottom: 0.5rem;
+}
+
+.input:focus, .textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+  outline: none;
+  transform: translateY(-2px);
+}
+
+.input:hover, .textarea:hover {
+  border-color: var(--secondary-color);
+}
+
+.textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Checkbox styling */
+input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--primary-color);
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+}
+
+input[type="checkbox"]:checked + span {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+label {
+  padding: 0.5rem;
+  border-radius: var(--border-radius);
+  transition: all var(--transition-speed) ease;
+}
+
+label:hover {
+  background-color: rgba(79, 70, 229, 0.05);
+}
+
+/* Submit button with gradient and hover effects */
+button[type="submit"] {
+  width: 100%;
+  padding: 0.875rem;
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  color: white;
+  font-weight: 600;
+  border-radius: var(--border-radius);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+
+button[type="submit"]:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+button[type="submit"]::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.6s;
+}
+
+button[type="submit"]:hover::after {
+  left: 100%;
+  animation: shine 1.5s infinite;
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Grid layout improvements */
+.grid.gap-6 {
+  gap: 1.5rem;
+}
+
+.grid.grid-cols-1.md\:grid-cols-2.gap-4 {
+  gap: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .max-w-5xl {
+    padding: 1rem;
   }
   
-  .college-form-title {
-    text-align: center;
-    font-size: 2rem;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 2rem;
+  form > div {
+    padding: 1rem;
   }
   
-  .form-grid {
-    display: grid;
-    gap: 1.5rem;
-  }
-  
-  .form-section {
-    margin-bottom: 2rem;
-  }
-  
-  .form-section h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #1e40af;
-    margin-bottom: 1rem;
-  }
-  
-  .input-field,
-  .textarea-field {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1rem;
-    background-color: #f9f9f9;
-    transition: border 0.3s ease;
-  }
-  
-  .input-field:focus,
-  .textarea-field:focus {
-    border-color: #1e40af;
-    outline: none;
-    background-color: #fff;
-  }
-  
-  .checkbox-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 0.75rem;
-  }
-  
-  .checkbox-label {
-    display: flex;
-    align-items: center;
-    font-size: 0.95rem;
-  }
-  
-  .checkbox-label input {
-    margin-right: 0.5rem;
-  }
-  
-  .submit-button {
-    background-color: #1e40af;
-    color: #fff;
-    padding: 0.75rem;
-    font-size: 1rem;
-    border-radius: 8px;
-    width: 100%;
-    transition: background-color 0.3s ease;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .submit-button:hover {
-    background-color: #3749c2;
-  }
   .input, .textarea {
-    padding: 10px;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    outline: none;
-    transition: border-color 0.3s, box-shadow 0.3s;
+    padding: 0.625rem 0.875rem;
+  }
+}
+
+/* Subtle animations for form sections when scrolled into view */
+@media (prefers-reduced-motion: no-preference) {
+  form > div {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 0.5s ease-out forwards;
   }
   
-  .input:focus, .textarea:focus, .focus-effect:focus {
-    border-color: #4f46e5; /* nice blue */
-    box-shadow: 0 0 8px rgba(79, 70, 229, 0.4);
+  form > div:nth-child(1) { animation-delay: 0.1s; }
+  form > div:nth-child(2) { animation-delay: 0.2s; }
+  form > div:nth-child(3) { animation-delay: 0.3s; }
+  form > div:nth-child(4) { animation-delay: 0.4s; }
+  form > div:nth-child(5) { animation-delay: 0.5s; }
+  form > div:nth-child(6) { animation-delay: 0.6s; }
+  form > div:nth-child(7) { animation-delay: 0.7s; }
+  form > div:nth-child(8) { animation-delay: 0.8s; }
+  form > div:nth-child(9) { animation-delay: 0.9s; }
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .textarea {
-    min-height: 100px;
-    resize: vertical;
-  }
-  
+}
+
+/* Validation styling */
+.input:invalid:not(:placeholder-shown),
+.textarea:invalid:not(:placeholder-shown) {
+  border-color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.05);
+}
+
+.input:valid:not(:placeholder-shown),
+.textarea:valid:not(:placeholder-shown) {
+  border-color: #10b981;
+  background-color: rgba(16, 185, 129, 0.05);
+}
+
+/* Success message animation for form submission */
+@keyframes success {
+  0% { transform: scale(0.95); }
+  70% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.success-message {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  border-left: 4px solid #10b981;
+  margin-bottom: 1rem;
+  animation: success 0.5s ease-out;
+}
+
+/* Error message animation for form submission */
+@keyframes error {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+.error-message {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  border-left: 4px solid #ef4444;
+  margin-bottom: 1rem;
+  animation: error 0.5s ease-out;
+}
+
+/* Additional animations for specific elements */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0px); }
+}
+
+input[type="email"], 
+input[name="website"] {
+  animation: float 4s ease-in-out infinite;
+}
