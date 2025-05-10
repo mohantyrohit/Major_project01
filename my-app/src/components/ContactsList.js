@@ -16,7 +16,7 @@ const ContactsList = ({ studentId, onSelectContact, selectedContactId, setSelect
 
     setLoading(true);
     try {
-      const res = await axiosInstance.get(`/messages/contacts/${studentId}`);
+      const res = await axiosInstance.get(`api/messages/contacts/${studentId}`);
       if (res.data.success) {
         setContacts(res.data.contacts || []);
       } else {
