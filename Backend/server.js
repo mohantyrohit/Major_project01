@@ -130,6 +130,8 @@ const authRoutes = require("./routes/auth");
 const authTokenRoutes = require("./routes/authTokenRoutes");
 const requestFormRoutes = require("./routes/requestFormRoutes");
 const collegeInfoRoutes = require('./routes/collegeInfoRoutes');
+const autoDeleteEvents = require("./jobs/autoDeleteEvents");
+const chatRoutes = require("./routes/chatRoutes");
 
 const app = express();
 
@@ -225,6 +227,8 @@ app.use("/api/notifications", notificationRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/requests", requestFormRoutes);
 app.use('/api/college-details', collegeInfoRoutes);
+app.use('/api/auto-delete-events', autoDeleteEvents);
+app.use('/api/chat', chatRoutes);
 
 // Start server
 const PORT = process.env.PORT || 5000;
