@@ -5,6 +5,7 @@ import {
   FaHome,
   FaSignOutAlt,
   FaBell,
+  FaComment ,
   FaEdit,
   FaEnvelopeOpenText,
   FaCheck,
@@ -44,6 +45,10 @@ const NavbarInstitute = () => {
 
   const [showRequestModal, setShowRequestModal] = useState(false);
   const [requests, setRequests] = useState([]);
+
+  const [showMessageModal, setShowMessageModal] = useState(false);
+  const [conversations, setConversations] = useState([]);
+  const [loadingConversations, setLoadingConversations] = useState(false);
 
   const fetchRequests = useCallback(async () => {
     if (!user?._id) return;
@@ -105,7 +110,7 @@ const NavbarInstitute = () => {
     fetchDistricts();
   }, [selectedState]);
 
- // Fetch Institutes when a District is Selected
+  // Fetch Institutes when a District is Selected
   useEffect(() => {
     if (!selectedDistrict) {
       setInstitutes([]); // Reset institutes if no district is selected
@@ -259,6 +264,33 @@ const NavbarInstitute = () => {
       alert(`Failed to ${status} request due to an error.`);
     }
   };
+  
+  const fetchConversations = useCallback(async () => {
+    if (!user?._id) return;
+    
+    setLoadingConversations(true);
+    try {
+      const token = localStorage.getItem("userToken");
+      const res = await axios.get(
+        `https://major-project01-1ukh.onrender.com/api/messages/conversations/${user._id}?userType=institute`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      
+      if (res.data.success) {
+        setConversations(res.data.conversations);
+      } else {
+        console.log("No conversations found");
+        setConversations([]);
+      }
+    } catch (err) {
+      console.error("Failed to fetch conversations", err);
+      setConversations([]);
+    } finally {
+      setLoadingConversations(false);
+    }
+  }, [user]);
 
   return (
     <div className="navbar-institute">
@@ -330,7 +362,18 @@ const NavbarInstitute = () => {
             <span className="notification-count">{unreadCount}</span>
           )}
         </div>
-
+        
+        <div 
+          className="nav-icon msg-icon" 
+          onClick={() => {
+            fetchConversations();
+            setShowMessageModal(true);
+          }}
+        >
+          <FaComment />
+          <span className="tooltip">Messages</span>
+        </div>
+        
         <div className="nav-icon">
           <FaEnvelopeOpenText
             onClick={fetchRequests}
@@ -537,6 +580,75 @@ const NavbarInstitute = () => {
             )}
           </div>
         </div>
+      )}
+      
+      {showMessageModal && (
+        <AnimatePresence>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="message-modal-overlay"
+          >
+            <motion.div
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.8 }}
+              className="message-modal-content"
+            >
+              <div className="message-modal-header">
+                <h2>Messages</h2>
+                <button
+                  onClick={() => setShowMessageModal(false)}
+                  className="message-modal-close-btn"
+                >
+                  <FaTimes />
+                </button>
+              </div>
+
+              {loadingConversations ? (
+                <div className="message-modal-loading">
+                  <p>Loading conversations...</p>
+                </div>
+              ) : conversations.length === 0 ? (
+                <div className="message-modal-empty">
+                  <p>No conversations yet.</p>
+                </div>
+              ) : (
+                <div className="message-modal-list">
+                  {conversations.map((conversation) => (
+                    <div
+                      key={conversation._id}
+                      className="message-modal-item"
+                      onClick={() => {
+                        setChatReceiverId(conversation.participantId); // FIXED: Fixed the typo here
+                        setChatReceiverName(conversation.participantName);
+                        setChatEventId(conversation.eventId);
+                        setShowChatBox(true);
+                        setShowMessageModal(false);
+                      }}
+                    >
+                      <div className="message-avatar">
+                        {conversation.participantName.charAt(0).toUpperCase()}
+                      </div>
+                      <div className="message-info">
+                        <h3>{conversation.participantName}</h3>
+                        <p className="message-preview">
+                          {conversation.lastMessage && conversation.lastMessage.length > 30
+                            ? `${conversation.lastMessage.substring(0, 30)}...`
+                            : conversation.lastMessage || "No messages yet"}
+                        </p>
+                      </div>
+                      <div className="message-time">
+                        {conversation.updatedAt && new Date(conversation.updatedAt).toLocaleDateString()}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </motion.div>
+          </motion.div>
+        </AnimatePresence>
       )}
     </div>
   );
