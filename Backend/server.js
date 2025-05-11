@@ -144,7 +144,7 @@ app.use(
 // Logging
 app.use(morgan("dev"));
 
-// 🔥 Fix CORS: Allow Netlify (frontend) to access this backend (Render)
+// Allow Netlify (frontend) to access this backend (Render)
 const allowedOrigins = [
     "https://institutefinder.netlify.app",
     "http://localhost:3000" // for local development
