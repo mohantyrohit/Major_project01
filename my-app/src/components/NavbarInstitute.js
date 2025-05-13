@@ -272,7 +272,7 @@ const NavbarInstitute = () => {
     try {
       const token = localStorage.getItem("userToken");
       const res = await axios.get(
-        `https://major-project01-1ukh.onrender.com/api/messages/conversations/${user._id}?userType=institute`,
+        `https://major-project01-1ukh.onrender.com/api/chat/conversations/${user._id}?userType=institute`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -655,3 +655,5 @@ const NavbarInstitute = () => {
 };
 
 export default NavbarInstitute;
+
+
