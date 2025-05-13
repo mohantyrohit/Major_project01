@@ -1,4 +1,4 @@
-// //This the 1st where institute chat work correctly 
+
 // const express = require("express");
 // const mongoose = require("mongoose");
 // const Message = require("../models/Message");
@@ -50,7 +50,6 @@
 
 // /**
 //  * ✅ GET: Fetch contacts the student has chatted with
-//  * 🟢 This route is now above the generic one
 //  */
 // router.get("/contacts/:studentId", verifyToken, async (req, res) => {
 //   const { studentId } = req.params;
@@ -131,6 +130,66 @@
 //   }
 // });
 
+// /**
+//  * ✅ GET: Fetch list of institutes the student has messaged with
+//  */
+// router.get("/student/:studentId/institutes", verifyToken, async (req, res) => {
+//   const { studentId } = req.params;
+
+//   if (!mongoose.Types.ObjectId.isValid(studentId)) {
+//     return res.status(400).json({ success: false, message: "Invalid studentId format" });
+//   }
+
+//   try {
+//     const institutes = await Message.aggregate([
+//       {
+//         $match: {
+//           $or: [
+//             { senderId: new mongoose.Types.ObjectId(studentId) },
+//             { receiverId: new mongoose.Types.ObjectId(studentId) },
+//           ],
+//         },
+//       },
+//       {
+//         $project: {
+//           id: {
+//             $cond: [
+//               { $eq: ["$senderId", new mongoose.Types.ObjectId(studentId)] },
+//               "$receiverId",
+//               "$senderId"
+//             ]
+//           },
+//           name: {
+//             $cond: [
+//               { $eq: ["$senderId", new mongoose.Types.ObjectId(studentId)] },
+//               "$receiverName",
+//               "$senderName"
+//             ]
+//           }
+//         }
+//       },
+//       {
+//         $group: {
+//           _id: "$id",
+//           name: { $first: "$name" }
+//         }
+//       },
+//       {
+//         $project: {
+//           id: "$_id",
+//           name: 1,
+//           _id: 0
+//         }
+//       }
+//     ]);
+
+//     res.status(200).json({ success: true, institutes });
+//   } catch (err) {
+//     console.error("Fetch institutes error:", err);
+//     res.status(500).json({ success: false, message: "Failed to fetch institutes", error: err.message });
+//   }
+// });
+
 // module.exports = router;
 const express = require("express");
 const mongoose = require("mongoose");
@@ -152,27 +211,28 @@ router.post("/", verifyToken, async (req, res) => {
   if (!receiverId || !receiverName || !message || !receiverType)
     return res.status(400).json({ success: false, message: "Missing required fields" });
 
-  let processedEventId = undefined;
-  if (eventId) {
-    if (mongoose.Types.ObjectId.isValid(eventId)) {
-      processedEventId = new mongoose.Types.ObjectId(eventId);
-    } else {
-      return res.status(400).json({ success: false, message: "Invalid eventId format" });
-    }
-  }
-
   try {
-    const newMessage = new Message({
+    // Create a base message object without eventId
+    const messageData = {
       senderId,
       senderType,
       senderName,
       receiverId,
       receiverName,
       message,
-      eventId: processedEventId,
       receiverType,
-    });
+    };
 
+    // Only add eventId to the message if it exists and is valid
+    if (eventId) {
+      if (mongoose.Types.ObjectId.isValid(eventId)) {
+        messageData.eventId = new mongoose.Types.ObjectId(eventId);
+      } else {
+        return res.status(400).json({ success: false, message: "Invalid eventId format" });
+      }
+    }
+
+    const newMessage = new Message(messageData);
     const savedMessage = await newMessage.save();
     res.status(201).json({ success: true, message: savedMessage });
   } catch (error) {
