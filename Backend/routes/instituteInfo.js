@@ -174,8 +174,10 @@
 
 
 const express = require("express");
+const router = express.Router();
 const multer = require("multer");
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
+
 const cloudinary = require("cloudinary").v2;
 const path = require("path");
 const InstituteInfo = require("../models/InstituteInfo");
