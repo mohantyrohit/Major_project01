@@ -64,7 +64,7 @@ const CollegeDetailsForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('/collegeInfo', formData); // Send formData including instituteId
+      const response = await axios.post('/api/college-details', formData); // Send formData including instituteId
       alert('College details submitted successfully!');
       console.log(response.data);
     } catch (error) {

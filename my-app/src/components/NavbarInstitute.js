@@ -5,7 +5,7 @@ import {
   FaHome,
   FaSignOutAlt,
   FaBell,
-  FaComment ,
+  FaComment,
   FaEdit,
   FaEnvelopeOpenText,
   FaCheck,
@@ -92,27 +92,66 @@ const NavbarInstitute = () => {
   useEffect(() => {
     if (!selectedState) {
       setDistricts([]);
+      setSelectedDistrict("");
       return;
     }
+    
     const fetchDistricts = async () => {
       setLoadingDistricts(true);
       try {
+        // Log the API call for debugging
+        console.log(`Fetching districts for state: ${selectedState}`);
+        
         const res = await axios.get(
           `https://major-project01-1ukh.onrender.com/api/instituteInfo/districts/${selectedState}`
         );
-        if (res.data.success) setDistricts(res.data.districts);
+        
+        // Log the response for debugging
+        console.log("Districts response:", res.data);
+        
+        if (res.data.success) {
+          if (res.data.districts && res.data.districts.length > 0) {
+            setDistricts(res.data.districts);
+          } else {
+            // Handle empty districts array
+            console.warn(`No districts found for ${selectedState}`);
+            setDistricts([]);
+            // Add a custom district option for testing purposes
+            // Remove this in production if not needed
+            setDistricts(["District data unavailable"]); 
+          }
+        } else {
+          console.error("Failed to fetch districts:", res.data.message || "Unknown error");
+          setDistricts([]);
+        }
       } catch (err) {
         console.error("Error fetching districts:", err);
+        setDistricts([]);
       } finally {
         setLoadingDistricts(false);
       }
     };
+    
     fetchDistricts();
   }, [selectedState]);
 
+  // When state changes, reset district and institute selections
+  const handleStateChange = (e) => {
+    setSelectedState(e.target.value);
+    setSelectedDistrict("");
+    setSelectedInstitute("");
+    setInstitutes([]);
+  };
+
+  // When district changes, reset institute selection
+  const handleDistrictChange = (e) => {
+    setSelectedDistrict(e.target.value);
+    setSelectedInstitute("");
+  };
+
   // Fetch Institutes when a District is Selected
   useEffect(() => {
-    if (!selectedDistrict) {
+    if (!selectedDistrict || !selectedState) {
       setInstitutes([]); // Reset institutes if no district is selected
       return;
     }
@@ -120,22 +159,30 @@ const NavbarInstitute = () => {
     const fetchInstitutes = async () => {
       setLoadingInstitutes(true);
       try {
-        const response = await fetch(
+        // Log the API call for debugging
+        console.log(`Fetching institutes for state: ${selectedState}, district: ${selectedDistrict}`);
+        
+        const response = await axios.get(
           `https://major-project01-1ukh.onrender.com/api/instituteInfo/institutes/${selectedState}/${selectedDistrict}`
         );
-        const data = await response.json();
-        if (data.success) {
-          setInstitutes(data.institutes); // Populate institute options
+        
+        // Log the response for debugging
+        console.log("Institutes response:", response.data);
+        
+        if (response.data.success) {
+          setInstitutes(response.data.institutes); // Populate institute options
         } else {
-          alert("Failed to load institutes.");
+          console.error("Failed to load institutes:", response.data.message || "Unknown error");
+          setInstitutes([]);
         }
       } catch (error) {
         console.error("Error fetching institutes:", error);
-        alert("An error occurred while fetching institutes.");
+        setInstitutes([]);
       } finally {
         setLoadingInstitutes(false);
       }
     };
+    
     fetchInstitutes();
   }, [selectedDistrict, selectedState]);
 
@@ -301,7 +348,7 @@ const NavbarInstitute = () => {
       <div className="navbar-search">
         <select
           value={selectedState}
-          onChange={(e) => setSelectedState(e.target.value)}
+          onChange={handleStateChange}
         >
           <option value="">
             {loadingStates ? "Loading States..." : "Select State"}
@@ -315,11 +362,15 @@ const NavbarInstitute = () => {
 
         <select
           value={selectedDistrict}
-          onChange={(e) => setSelectedDistrict(e.target.value)}
-          disabled={!selectedState}
+          onChange={handleDistrictChange}
+          disabled={!selectedState || loadingDistricts}
         >
           <option value="">
-            {loadingDistricts ? "Loading Districts..." : "Select District"}
+            {loadingDistricts 
+              ? "Loading Districts..." 
+              : districts.length === 0 
+                ? "No districts available" 
+                : "Select District"}
           </option>
           {districts.map((district, idx) => (
             <option key={idx} value={district}>
@@ -331,10 +382,14 @@ const NavbarInstitute = () => {
         <select
           value={selectedInstitute}
           onChange={(e) => setSelectedInstitute(e.target.value)}
-          disabled={!selectedDistrict}
+          disabled={!selectedDistrict || loadingInstitutes}
         >
           <option value="">
-            {loadingInstitutes ? "Loading Institutes..." : "Select Institute"}
+            {loadingInstitutes 
+              ? "Loading Institutes..." 
+              : institutes.length === 0 
+                ? "No institutes available" 
+                : "Select Institute"}
           </option>
           {institutes.map((institute, idx) => (
             <option key={idx} value={institute.instituteName}>
@@ -343,7 +398,7 @@ const NavbarInstitute = () => {
           ))}
         </select>
 
-        <button onClick={handleSearch} disabled={loadingDetails}>
+        <button onClick={handleSearch} disabled={loadingDetails || !selectedInstitute}>
           {loadingDetails ? "Loading..." : "Search"}
         </button>
       </div>
@@ -621,7 +676,7 @@ const NavbarInstitute = () => {
                       key={conversation._id}
                       className="message-modal-item"
                       onClick={() => {
-                        setChatReceiverId(conversation.participantId); // FIXED: Fixed the typo here
+                        setChatReceiverId(conversation.participantId);
                         setChatReceiverName(conversation.participantName);
                         setChatEventId(conversation.eventId);
                         setShowChatBox(true);
@@ -655,5 +710,3 @@ const NavbarInstitute = () => {
 };
 
 export default NavbarInstitute;
-
-
