@@ -165,9 +165,12 @@ app.use(cors({
 // JSON parsing
 app.use(express.json());
 
-// Static uploads
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
+app.use("/uploads", (req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET");
+  res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
+  next();
+}, express.static(path.join(__dirname, "uploads")));
 // Database connection
 connectDB()
     .then(() => console.log("✅ Database Connected"))
