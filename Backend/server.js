@@ -129,7 +129,8 @@ const instituteInfoRoutes = require("./routes/instituteInfo");
 const authRoutes = require("./routes/auth");
 const authTokenRoutes = require("./routes/authTokenRoutes");
 const requestFormRoutes = require("./routes/requestFormRoutes");
-const collegeInfoRoutes = require('./routes/collegeInfoRoutes');
+const collegeInfoRoutes = require('./routes/CollegeInfoRoutes');
+// const collegeInfoRoutes = require('./routes/collegeInfoRoutes');
 const chatRoutes = require("./routes/chatRoutes");
 
 const app = express();
