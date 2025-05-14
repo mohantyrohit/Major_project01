@@ -217,6 +217,7 @@ app.post("/api/logout", (req, res) => {
 app.use("/api/student", studentRoutes);
 app.use("/api/institute", instituteRoutes);
 app.use("/api/instituteInfo", instituteInfoRoutes);
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/events", eventsRoutes);
 app.use("/api/auth", authRoutes);
