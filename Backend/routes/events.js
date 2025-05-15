@@ -131,7 +131,7 @@ const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
 const jwt = require("jsonwebtoken");
 const router = express.Router();
-const Participant = require("../models/Participant"); // Assuming you have a Participant model
+const Participant = require("../models/Participation");
 
 // Configure Cloudinary
 cloudinary.config({
@@ -140,7 +140,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-// In-memory storage for multer (we'll upload to cloudinary after validating)
+// In-memory storage for multer
 const storage = multer.memoryStorage();
 const upload = multer({ 
   storage,
