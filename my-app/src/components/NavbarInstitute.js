@@ -475,13 +475,19 @@ const NavbarInstitute = () => {
                     <p>Gender: {notif.gender}</p>
                     <p>Contact: {notif.contact}</p>
                     {notif.idCardPath && (
-                      <a
-                        href={`https://major-project01-1ukh.onrender.com${notif.idCardPath}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        View ID Card
-                      </a>
+                     <a
+  href={
+    notif.idCardPath.startsWith("http")
+      ? notif.idCardPath
+      : `https://major-project01-1ukh.onrender.com${notif.idCardPath}`
+  }
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  View ID Card
+</a>
+
+
                     )}
                     <div className="notification-actions">
                       <button

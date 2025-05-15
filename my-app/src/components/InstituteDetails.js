@@ -735,7 +735,7 @@ const InstituteDetails = () => {
         {instituteDetails.institutePictureUrl && (
           <div className="institute-image">
             <img
-              src={`https://major-project01-1ukh.onrender.com${instituteDetails.institutePictureUrl}`}
+              src={instituteDetails.institutePictureUrl}
               alt={instituteDetails.instituteName}
               className="institute-photo"
             />
