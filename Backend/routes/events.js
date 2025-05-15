@@ -128,25 +128,31 @@
 // routes/events.js
 const express = require("express");
 const multer = require("multer");
-const fs = require("fs");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
 const Event = require("../models/Event");
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+require("dotenv").config();
 
-// Ensure Uploads directory exists
-const uploadDir = "./Uploads";
-if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir, { recursive: true });
-}
+// Cloudinary configuration
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
-// Multer setup for file uploads
-const storage = multer.diskStorage({
-    destination: uploadDir,
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + "_" + file.originalname);
+// Configure multer storage using Cloudinary
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: "events", // folder where event images will be stored
+        allowed_formats: ["jpg", "jpeg", "png"],
     },
 });
-const upload = multer({ storage: storage });
+
+// Configure multer with Cloudinary storage
+const upload = multer({ storage });
 
 // Middleware: Validate token & auto-fetch user ID
 const authenticateUser = (req, res, next) => {
@@ -203,9 +209,10 @@ router.post(
                 eventName,
                 eventDate: formattedEventDate,
                 eventDescription,
+                // Store Cloudinary URLs instead of local file paths
                 eventPhotos: req.files.eventPhoto.map(file => file.path),
                 organizerName,
-                organizerPhoto: req.files?.organizerPhoto ? req.files.organizerPhoto[0].path : null, // Use optional chaining
+                organizerPhoto: req.files?.organizerPhoto ? req.files.organizerPhoto[0].path : null,
                 organizerDescription,
                 createdBy,
             });
@@ -231,7 +238,6 @@ router.get("/", authenticateUser, async (req, res) => {
     }
 });
 
-
 // Route: Get Events by Institute ID (for public view)
 router.get("/institute/:instituteId", async (req, res) => {
     try {
@@ -248,6 +254,5 @@ router.get("/institute/:instituteId", async (req, res) => {
         res.status(500).json({ message: "Server error occurred.", error: error.message });
     }
 });
-
 
 module.exports = router;
